@@ -22,17 +22,17 @@ Sistem ini digunakan untuk melakukan pelacakan alumni Universitas Muhammadiyah M
 ## Link Project
 
 ### Source Code
-https://github.com/username/alumni-tracker
+https://github.com/Alfarizyye/lacak-alumni-umm.git
 
 ### Live Website
-https://username.github.io/alumni-tracker
+https://lacakalumniumm-alfarizi.netlify.app/
 
 
 ## Pengujian Sistem
 
 | No | Fitur Sistem | Skenario Pengujian | Hasil yang Diharapkan | Hasil Pengujian | Status |
 |----|-------------|-------------------|----------------------|----------------|--------|
-| 1 | Tambah Alumni | User mengisi data alumni lalu klik tombol tambah | Data alumni tersimpan dan tampil di tabel | Data berhasil tampil di tabel | Berhasil |
+| 1 | Pelacakan alumni | User mengisi data alumni lalu klik tombol tambah | Data alumni tersimpan dan tampil di tabel | Data berhasil tampil di tabel | Berhasil |
 | 2 | Query Generator | User menekan tombol Track pada alumni | Sistem menghasilkan beberapa query pencarian alumni | Query muncul pada panel Query Generator | Berhasil |
 | 3 | Tracking Sources | Sistem melakukan simulasi pelacakan sumber alumni | Sistem menampilkan sumber tracking | Sumber tracking muncul pada panel Tracking Sources | Berhasil |
 | 4 | Confidence Score | Sistem menghitung tingkat kecocokan data | Confidence score tampil dalam persen | Score tampil pada progress bar | Berhasil |

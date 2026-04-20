@@ -66,3 +66,7 @@ border:none;
 .btn-danger:hover{
 background:#990000;
 }
+
+.progress-bar {
+    transition: width 0.5s ease;
+}

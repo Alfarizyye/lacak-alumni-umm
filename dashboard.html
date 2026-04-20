@@ -3,225 +3,221 @@
 
 <head>
 
-<title>Sistem Pelacakan Alumni UMM</title>
+    <title>Sistem Pelacakan Alumni UMM</title>
 
-<link rel="stylesheet"
-href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
 
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-<link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
 
 <body>
 
-<div class="sidebar">
+    <div class="sidebar">
 
-<h3 class="logo">UMM Tracker</h3>
+        <h3 class="logo">UMM Tracker</h3>
 
-<a href="dashboard.html">
-<i class="fa fa-chart-line"></i> Dashboard
-</a>
+        <a href="dashboard.html">
+            <i class="fa fa-chart-line"></i> Dashboard
+        </a>
 
-<a href="history.html">
-<i class="fa fa-clock"></i> History
-</a>
+        <a href="history.html">
+            <i class="fa fa-clock"></i> History
+        </a>
 
-</div>
-
-
-<div class="content">
-
-<h2 class="mb-4">
-<i class="fa fa-search"></i>
-Sistem Pelacakan Alumni UMM
-</h2>
+    </div>
 
 
-<!-- STATISTIK -->
+    <div class="content">
 
-<div class="row mb-4">
-
-<div class="col-md-4">
-
-<div class="card stat-card bg-danger text-white">
-
-<h6>Total Alumni</h6>
-
-<h2 id="totalAlumni">0</h2>
-
-</div>
-
-</div>
+        <h2 class="mb-4">
+            <i class="fa fa-search"></i>
+            Sistem Pelacakan Alumni UMM
+        </h2>
 
 
-<div class="col-md-4">
+        <!-- STATISTIK -->
 
-<div class="card stat-card bg-success text-white">
+        <div class="row mb-4">
 
-<h6>Teridentifikasi</h6>
+            <div class="col-md-4">
 
-<h2 id="foundAlumni">0</h2>
+                <div class="card stat-card bg-danger text-white">
 
-</div>
+                    <h6>Total Alumni</h6>
 
-</div>
+                    <h2 id="totalAlumni">0</h2>
 
+                </div>
 
-<div class="col-md-4">
-
-<div class="card stat-card bg-secondary text-white">
-
-<h6>Belum Ditemukan</h6>
-
-<h2 id="notFound">0</h2>
-
-</div>
-
-</div>
-
-</div>
+            </div>
 
 
+            <div class="col-md-4">
 
-<!-- PANEL SISTEM -->
+                <div class="card stat-card bg-success text-white">
 
-<div class="row mb-4">
+                    <h6>Teridentifikasi</h6>
 
-<div class="col-md-4">
+                    <h2 id="foundAlumni">0</h2>
 
-<div class="card panel-card">
+                </div>
 
-<h5><i class="fa fa-code"></i> Query Generator</h5>
+            </div>
 
-<div id="panelQuery">
-Belum ada query
-</div>
 
-</div>
+            <div class="col-md-4">
 
-</div>
+                <div class="card stat-card bg-secondary text-white">
+
+                    <h6>Belum Ditemukan</h6>
+
+                    <h2 id="notFound">0</h2>
+
+                </div>
+
+            </div>
+
+        </div>
 
 
 
-<div class="col-md-4">
+        <!-- PANEL SISTEM -->
 
-<div class="card panel-card">
+        <div class="row mb-4">
 
-<h5><i class="fa fa-globe"></i> Tracking Sources</h5>
+            <div class="col-md-4">
 
-<div id="panelTracking">
-Belum ada tracking
-</div>
+                <div class="card panel-card">
 
-</div>
+                    <h5><i class="fa fa-code"></i> Query Generator</h5>
 
-</div>
+                    <div id="panelQuery">
+                        Belum ada query
+                    </div>
 
+                </div>
 
-
-<div class="col-md-4">
-
-<div class="card panel-card">
-
-<h5><i class="fa fa-brain"></i> Confidence Score</h5>
-
-<div id="panelScore" class="score">
-0%
-</div>
-
-</div>
-
-</div>
-
-</div>
+            </div>
 
 
 
-<!-- GRAFIK -->
+            <div class="col-md-4">
 
-<div class="card panel-card mb-4">
+                <div class="card panel-card">
 
-<h5>
-<i class="fa fa-chart-bar"></i>
-Statistik Alumni
+                    <h5><i class="fa fa-globe"></i> Tracking Sources</h5>
+
+                    <div id="panelTracking">
+                        Belum ada tracking
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="col-md-4">
+
+                <div class="card panel-card">
+
+                    <h5><i class="fa fa-brain"></i> Confidence Score</h5>
+
+                    <div id="panelScore" class="score">
+                        0%
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- GRAFIK -->
+
+        <div class="card panel-card mb-4">
+
+            <h5>
+                <i class="fa fa-chart-bar"></i>
+                Statistik Alumni
+            </h5>
+
+            <canvas id="chartAlumni"></canvas>
+
+        </div>
+
+
+
+        <!-- TAMBAH ALUMNI -->
+
+        <div class="card panel-card mb-4">
+
+            <h5>
+    <i class="fa fa-search"></i>
+    Pelacakan Alumni
 </h5>
 
-<canvas id="chartAlumni"></canvas>
+<input id="searchNama" class="form-control mb-2" placeholder="Masukkan Nama Alumni">
+<input id="searchProdi" class="form-control mb-2" placeholder="Program Studi (Opsional)">
+<input id="searchTahun" class="form-control mb-2" placeholder="Tahun Lulus (Opsional)">
 
-</div>
-
-
-
-<!-- TAMBAH ALUMNI -->
-
-<div class="card panel-card mb-4">
-
-<h5>
-<i class="fa fa-user-plus"></i>
-Tambah Alumni
-</h5>
-
-<input id="nama" class="form-control mb-2" placeholder="Nama Lengkap">
-
-<input id="prodi" class="form-control mb-2" placeholder="Program Studi">
-
-<input id="fakultas" class="form-control mb-2" placeholder="Fakultas">
-
-<input id="tahun" class="form-control mb-2" placeholder="Tahun Lulus">
-
-<input id="kota" class="form-control mb-2" placeholder="Kota Asal">
-
-<button onclick="tambahAlumni()" class="btn btn-danger w-100">
-Tambah Alumni
+<button onclick="lacakAlumni()" class="btn btn-danger w-100">
+    🔍 Lacak Alumni
 </button>
 
-</div>
+
+
+        <!-- TABLE -->
+
+        <div class="card panel-card">
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered" style="min-width: 1500px;">
+
+                    <thead class="table-danger">
+
+                        <tr>
+
+                            <th>Nama</th>
+                            <th>Prodi</th>
+                            <th>Tahun</th>
+                            <th>Email</th>
+                            <th>No HP</th>
+                            <th>Sosmed Pribadi</th>
+                            <th>Tempat Kerja</th>
+                            <th>Posisi</th>
+                            <th>Kategori</th>
+                            <th>Status</th>
+                            <th>Confidence</th>
+                            <th>Aksi</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="tableAlumni"></tbody>
+
+                </table>
+            </div>
+        </div>
+
+    </div>
 
 
 
-<!-- TABLE -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
 
-<div class="card panel-card">
-
-<table class="table table-hover">
-
-<thead class="table-danger">
-
-<tr>
-
-<th>Nama</th>
-<th>Prodi</th>
-<th>Fakultas</th>
-<th>Tahun</th>
-<th>Kota</th>
-<th>Status</th>
-<th>Confidence</th>
-<th>Aksi</th>
-
-</tr>
-
-</thead>
-
-<tbody id="tableAlumni"></tbody>
-
-</table>
-
-</div>
-
-</div>
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<script src="js/app.js"></script>
-<script src="js/queryGenerator.js"></script>
-<script src="js/trackingEngine.js"></script>
-<script src="js/scoringEngine.js"></script>
-<script src="js/scheduler.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/queryGenerator.js"></script>
+    <script src="js/trackingEngine.js"></script>
+    <script src="js/scoringEngine.js"></script>
+    <script src="js/scheduler.js"></script>
 
 </body>
+
 </html>
