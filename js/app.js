@@ -1,3 +1,8 @@
+// 🔐 CEK LOGIN
+if (localStorage.getItem('isAuthenticated') !== 'true') {
+    window.location.href = 'login.html';
+}
+
 //  DATABASE
 let alumni = JSON.parse(localStorage.getItem("alumni")) || [];
 let history = JSON.parse(localStorage.getItem("history")) || [];
@@ -19,20 +24,24 @@ function simpan() {
 function lacakAlumni() {
 
     let nama = document.getElementById("searchNama").value;
+    let nim = document.getElementById("searchNIM").value;
+    let tahunMasuk = document.getElementById("searchTahunMasuk").value;
+    let tanggalLulus = document.getElementById("searchTanggalLulus").value;
+    let fakultas = document.getElementById("searchFakultas").value;
     let prodi = document.getElementById("searchProdi").value;
-    let tahun = document.getElementById("searchTahun").value;
 
     if (!nama) {
         alert("Nama wajib diisi!");
         return;
     }
 
-    // buat data awal
     let data = {
         nama_lengkap: nama,
-        prodi: prodi || "-",
-        fakultas: "-",
-        tahun_lulus: tahun || "-",
+        nim: nim,
+        tahun_masuk: tahunMasuk,
+        tahun_lulus: tanggalLulus,
+        fakultas: fakultas,
+        prodi: prodi,
 
         email: "",
         nohp: "",
@@ -44,6 +53,7 @@ function lacakAlumni() {
         alamat_kerja: "",
         posisi: "",
         jenis_pekerjaan: "",
+        sosmed_kerja: "",
 
         status: "Belum Dilacak",
         confidence: 0
@@ -51,15 +61,17 @@ function lacakAlumni() {
 
     alumni.push(data);
 
-    // langsung tracking
-    track(alumni.length - 1);
+    // langsung track data baru yang dimasukkan
+    let index = alumni.length - 1;
+    track(index);
 }
+
 
 function trackUlang(i){
 
     let a = alumni[i];
 
-    document.getElementById("panelQuery").innerText = a.nama;
+    document.getElementById("panelQuery").innerText = a.nama_lengkap;
 
     document.getElementById("panelTracking").innerHTML =
         "• Re-tracking data...";
@@ -74,7 +86,7 @@ function trackUlang(i){
 
         document.getElementById("panelScore").innerText = score + "%";
 
-        tampilHasil();
+        tampil();
         updateStat();
         grafik();
 
@@ -87,9 +99,8 @@ function track(i) {
     let a = alumni[i];
 
     // 🔍 QUERY GENERATOR
-    let query = `${a.nama_lengkap} ${a.prodi} UMM ${a.tahun_lulus}`;
-    document.getElementById("panelQuery").innerText = query;
-
+    let query = `${a.nama_lengkap} ${a.nim || ""} ${a.prodi || ""} ${a.fakultas || ""} UMM ${a.tahun_lulus || ""}`;
+document.getElementById("panelQuery").innerText = query;
     // 🌐 TRACKING SOURCE
     let hasil = [
         "LinkedIn ditemukan",
@@ -117,6 +128,10 @@ function track(i) {
         a.nohp = "08" + Math.floor(1000000000 + Math.random() * 9000000000);
         a.linkedin = "linkedin.com/in/" + namaClean;
         a.ig = "@" + namaClean;
+        a.fb = "facebook.com/" + namaClean;
+        a.tiktok = "@" + namaClean + "official";
+        a.alamat_kerja = "Jl. Sudirman No " + Math.floor(Math.random() * 100) + ", Jakarta";
+        a.sosmed_kerja = "@" + randomPT.toLowerCase().replace(/[^a-z]/g, '');
         a.tempat_kerja = randomPT;
         a.posisi = randomPosisi;
         a.jenis_pekerjaan = "Swasta";
@@ -138,9 +153,57 @@ function track(i) {
         });
 
         simpan();
-        tampil();
+        tampilTracking(i);
 
     }, 1500);
+}
+
+// 📋 TAMPILKAN TABLE (SATU BARIS SAAT TRACKING)
+function tampilTracking(index) {
+
+    let a = alumni[index];
+    let i = index;
+
+    let html = `
+        <tr>
+            <td>${a.nama_lengkap}</td>
+            <td>${a.prodi}</td>
+            <td>${a.tahun_lulus}</td>
+            <td>${a.email || '-'}</td>
+            <td>${a.nohp || '-'}</td>
+            <td>
+                <small>
+                    LI: ${a.linkedin || '-'}<br>
+                    IG: ${a.ig || '-'}
+                </small>
+            </td>
+            <td>${a.tempat_kerja || '-'}</td>
+            <td>${a.posisi || '-'}</td>
+            <td>${a.jenis_pekerjaan || '-'}</td>
+            <td>${a.status}</td>
+
+            <td style="width:180px">
+                <div class="progress" style="height:20px;">
+                    <div class="progress-bar bg-success" 
+                        style="width:${a.confidence}%">
+                        ${a.confidence}%
+                    </div>
+                </div>
+            </td>
+
+            <td>
+                <button onclick="trackUlang(${i})"
+                class="btn btn-danger btn-sm">
+                    Track
+                </button>
+            </td>
+        </tr>
+    `;
+
+    document.getElementById("tableAlumni").innerHTML = html;
+
+    updateStat();
+    grafik();
 }
 
 // 📋 TAMPILKAN TABLE
@@ -253,15 +316,34 @@ function prosesImportExcel(event) {
         json.slice(0, 300).forEach(row => {
 
             let nama = row["Nama"] || row["nama"] || "";
+            let nim = row["NIM"] || row["nim"] || "";
+            let prodi = row["Prodi"] || "-";
+            let fakultas = row["Fakultas"] || "-";
+            let tahun = row["Tahun Lulus"] || "-";
 
             if (nama) {
                 alumni.push({
-                    nama_lengkap: nama,
-                    prodi: "-",
-                    tahun_lulus: "-",
-                    status: "Belum Dilacak",
-                    confidence: 0
-                });
+    nama_lengkap: nama,
+    nim: nim,
+    prodi: prodi,
+    fakultas: fakultas,
+    tahun_lulus: tahun,
+
+    email: "",
+    nohp: "",
+    linkedin: "",
+    ig: "",
+    fb: "",
+    tiktok: "",
+    tempat_kerja: "",
+    alamat_kerja: "",
+    posisi: "",
+    jenis_pekerjaan: "",
+    sosmed_kerja: "",
+
+    status: "Belum Dilacak",
+    confidence: 0
+});
             }
         });
 

@@ -162,15 +162,26 @@
     Pelacakan Alumni
 </h5>
 
-<input id="searchNama" class="form-control mb-2" placeholder="Masukkan Nama Alumni">
-<input id="searchProdi" class="form-control mb-2" placeholder="Program Studi (Opsional)">
-<input id="searchTahun" class="form-control mb-2" placeholder="Tahun Lulus (Opsional)">
+<input id="searchNama" class="form-control mb-2" placeholder="Nama Lengkap">
+<input id="searchNIM" class="form-control mb-2" placeholder="NIM">
+<input id="searchTahunMasuk" class="form-control mb-2" placeholder="Tahun Masuk">
+<input id="searchTanggalLulus" class="form-control mb-2" placeholder="Tanggal Lulus">
+<input id="searchFakultas" class="form-control mb-2" placeholder="Fakultas">
+<input id="searchProdi" class="form-control mb-2" placeholder="Program Studi">
 
 <button onclick="lacakAlumni()" class="btn btn-danger w-100">
     🔍 Lacak Alumni
 </button>
 
+<!-- IMPORT EXCEL -->
+<input type="file" id="importExcel" accept=".xlsx, .xls, .csv"
+class="d-none"
+onchange="prosesImportExcel(event)">
 
+<button onclick="document.getElementById('importExcel').click()"
+class="btn btn-success w-100 mt-2">
+    <i class="fa fa-file-excel"></i> Import Data Alumni (Excel)
+</button>
 
         <!-- TABLE -->
 
