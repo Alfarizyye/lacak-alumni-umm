@@ -25,7 +25,7 @@ Sistem ini digunakan untuk melakukan pelacakan alumni Universitas Muhammadiyah M
 https://github.com/Alfarizyye/lacak-alumni-umm.git
 
 ### Live Website
-https://lacakalumniumm-alfarizi.netlify.app/
+https://lacakalumniumm.netlify.app/
 
 
 ## Pengujian Sistem
